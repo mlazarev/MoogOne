@@ -1,3 +1,4 @@
+package moogone;
 
 public class MoogOne {
 
