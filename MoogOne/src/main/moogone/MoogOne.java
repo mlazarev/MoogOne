@@ -4,11 +4,18 @@ public class MoogOne {
 
 	public static void main(String[] args) {
 		
-		args = new String[10]; 
-		args[0] = "C:\\Users\\Mike\\git\\MoogOne\\MoogOne\\src\\patches\\WHERE IS THE BASS -LAZ.m1p";
+		/* For local testing */
+		args = new String[2]; 
+		
+		String currentDir = System.getProperty("user.dir");
+		String inFile = currentDir + "\\bin\\patches\\WHERE IS THE BASS -LAZ.m1p";
+		String outFile = currentDir + "\\bin\\patches\\NEW PATCH.m1p";
+		
+		args[0] = inFile;
 		
 		Patch patch = new Patch();
 		
+		/* ------------------ */
 		
 		if (args.length==0) {
 			printHelp();
@@ -21,7 +28,7 @@ public class MoogOne {
 		
 		System.out.println("Patch has " + patch.size() + " attributes.");
 
-		PatchIO.writePatchFile("D:\\temp\\testOut.m1p", patch);
+		PatchIO.writePatchFile(outFile, patch);
 		
 	}
 

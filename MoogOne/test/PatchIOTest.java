@@ -23,7 +23,7 @@ public class PatchIOTest {
 		patch = new Patch();
 		
 		currentDir = System.getProperty("user.dir");
-		patchFile = currentDir + "\\src\\patches\\WHERE IS THE BASS -LAZ.m1p";
+		patchFile = currentDir + "\\bin\\patches\\WHERE IS THE BASS -LAZ.m1p";
 	}
 	
 	@Test
@@ -33,7 +33,10 @@ public class PatchIOTest {
 
 	@Test
 	public void testReadNonExistingFile() {
-		PatchIO.readPatchFile("C:\\what.is.this.file", patch);
+		
+		String nonExistingFile = currentDir + "\\bin\\BAD PATCH.m1p";
+		
+		PatchIO.readPatchFile(nonExistingFile, patch);
 		Assert.assertTrue(patch.size() == 0);
 	}
 
