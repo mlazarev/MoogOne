@@ -1,4 +1,4 @@
-package moogone;
+package main.moogone;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,6 +41,7 @@ public class Patch {
 	public String getValue(String parameter) {
 		return map.get(parameter);
 	}
+	
 	
 	/**
 	 * @return an iterator over the Parameters in proper sequence

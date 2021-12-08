@@ -1,4 +1,4 @@
-package moogone;
+package main.moogone;
 
 public class MoogOne {
 

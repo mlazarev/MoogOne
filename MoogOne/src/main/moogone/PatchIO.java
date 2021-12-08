@@ -1,4 +1,4 @@
-package moogone;
+package main.moogone;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,14 +14,17 @@ import java.util.Iterator;
 
 /**
  * Static I/O utilities to read and write Moog One Patch files
- * 
- * TODO: Write test to compare the output of two files line by line 
  */
 public class PatchIO {
 
 	private final static String SEPARATOR = " ";
 	
 	public static void readPatchFile(String path, Patch patch) {
+		
+		if (path == null || patch == null)
+		{
+			return;
+		}
 		
 		File patchFile = new File(path);
 		
