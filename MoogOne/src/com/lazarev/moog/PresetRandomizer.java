@@ -8,7 +8,6 @@ public class PresetRandomizer {
 
 	/**
 	 * This is the very first method, which gives an example on how to randomize Wave Angle (I think)
-	 * @param preset
 	 */
 	public static void randomizeAllOscillators(Preset preset) 
 	{
