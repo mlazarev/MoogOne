@@ -16,6 +16,3 @@ Since we can easily read, manipulate, and write out this type of format, it woul
 
 ## Programming and Contribution 
 The source in this repository is written in Java. The execution of the program for novice users is still under development. Possible future interfaces may include Web (with the UI in HTML5/JavaScript). Meanwhile, your contribution towards the development of the project is welcome. In particular, it would be very helpful to collectively enumerate various undocumented attributes which we can then re-use, regardless of the programming language.
-
-December, 2021
-Mike Lazarev
