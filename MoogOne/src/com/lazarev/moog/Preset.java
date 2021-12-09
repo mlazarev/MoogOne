@@ -44,6 +44,11 @@ public class Preset {
 	}
 	
 	
+	public void setValue(String parameter, String value) {
+		map.put(parameter, value);
+	}
+	
+	
 	/**
 	 * @return an iterator over the Preset Parameters in proper sequence
 	 */

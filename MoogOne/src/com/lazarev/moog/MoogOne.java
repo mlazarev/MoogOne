@@ -2,6 +2,8 @@ package com.lazarev.moog;
 
 public class MoogOne {
 
+	public final static boolean isDebug = false;
+	
 	public static void main(String[] args) {
 		
 		/* For local testing */
@@ -28,6 +30,8 @@ public class MoogOne {
 		
 		System.out.println("Preset has " + preset.size() + " attributes.");
 
+		PresetRandomizer.randomizeAllOscillators(preset);
+		
 		PresetIO.writePresetFile(outFile, preset);
 		
 	}
