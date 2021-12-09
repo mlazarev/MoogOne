@@ -4,7 +4,7 @@ A collection of tools and utilities for the [Moog One](https://www.moogmusic.com
 ## Background 
 The individual presets (also known as patches) stored in Moog One synthesizer memory, and exported via USB, appear to be in their own proprietary format. Although transimission of Continuous Controller (CC) messages and System Exclusive (SYSEX) messages via MIDI is supported, the manufacturer selected to store all of its numerous settings in a dedicated file (with an extension of **m1p**). The contents of this file are in plain ASCII format and appears to resemble a Registry or Properties format listing out key/value pairs, delimited by space. 
 
-You can see the example of this patch file [here](MoogOne/src/patches/WHERE%20IS%20THE%20BASS%20-LAZ.m1p).
+You can see the example of this patch file [here](MoogOne/src/presets/WHERE%20IS%20THE%20BASS%20-LAZ.m1p).
 
 ## Intention
 Since we can easily read, manipulate, and write out this type of format, it would be convinient to have a set of tools and utilities to programatically manipulate the parameter values and create new or derivative presets. Here are some examples of possible utilies:
