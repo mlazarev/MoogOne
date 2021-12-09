@@ -1,5 +1,5 @@
 # Moog One
-A collection of tools and utilities for the (Moog One)[https://www.moogmusic.com/products/moog-one] synthesizer operating on individual preset files.
+A collection of tools and utilities for the [Moog One](https://www.moogmusic.com/products/moog-one) synthesizer operating on individual preset files.
 
 ## Background 
 The individual presets (also known as patches) stored in Moog One synthesizer memory, and exported via USB, appear to be in their own proprietary format. Although transimission of Continuous Controller (CC) messages and System Exclusive (SYSEX) messages via MIDI is supported, the manufacturer selected to store all of its numerous settings in a dedicated file (with an extension of **m1p**). The contents of this file are in plain ASCII format and appears to resemble a Registry or Properties format listing out key/value pairs, delimited by space. 
