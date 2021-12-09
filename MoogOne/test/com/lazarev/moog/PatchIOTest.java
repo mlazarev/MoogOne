@@ -1,3 +1,4 @@
+package com.lazarev.moog;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,9 +9,6 @@ import java.io.InputStreamReader;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import main.moogone.Patch;
-import main.moogone.PatchIO;
 
 public class PatchIOTest {
 

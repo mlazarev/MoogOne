@@ -1,4 +1,4 @@
-package main.moogone;
+package com.lazarev.moog;
 
 public class MoogOne {
 

@@ -1,4 +1,4 @@
-package main.moogone;
+package com.lazarev.moog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,8 @@ import java.util.Iterator;
  * Backed by a key/value map and an ordered list, this class provides access to the 
  * Parameters and Values in the Patch. In order to write out a patch in the correct
  * order, use the {@link #iterator()} method to loop over Parameters in a sequence
- * and call {@link #getValue(String)} for each one.  
+ * and call {@link #getValue(String)} for each one. I'm not sure if a proper order
+ * is required, but all of the Moog One Patches appear to be saved in the same one
  * 
  * @author Mike Lazarev
  *

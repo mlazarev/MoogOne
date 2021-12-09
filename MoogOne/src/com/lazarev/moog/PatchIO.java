@@ -1,4 +1,4 @@
-package main.moogone;
+package com.lazarev.moog;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,7 +15,7 @@ import java.util.Iterator;
 /**
  * Static I/O utilities to read and write Moog One Patch files
  */
-public class PatchIO {
+class PatchIO {
 
 	private final static String SEPARATOR = " ";
 	
