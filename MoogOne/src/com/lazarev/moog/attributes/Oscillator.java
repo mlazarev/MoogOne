@@ -1,4 +1,4 @@
-package com.lazarev.moog.def;
+package com.lazarev.moog.attributes;
 
 import com.lazarev.moog.Parameter;
 

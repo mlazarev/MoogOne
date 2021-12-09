@@ -2,7 +2,7 @@ package com.lazarev.moog;
 
 import java.util.Random;
 
-import com.lazarev.moog.def.Oscillator;
+import com.lazarev.moog.attributes.Oscillator;
 
 public class PresetRandomizer {
 
