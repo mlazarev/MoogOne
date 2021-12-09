@@ -16,3 +16,11 @@ Since we can easily read, manipulate, and write out this file, it would be convi
 
 ## Programming and Contribution 
 The source in this repository is written in Java. The local execution of the program for novice users is still under development. But if you're a developer you can clone the repo and get going right away! Possible future interfaces may include Web (with the UI in HTML5/JavaScript). Meanwhile, your contribution towards the development of the project is welcome. In particular, it would be very helpful to collectively enumerate various undocumented attributes which we can then re-use, regardless of the programming language.
+
+## Status
+It's December of 2021 and this project is actively being developed. If six months have passed since this date and no comits have been made, it's possible for it to become stale. Otherwise, here's where we are:
+
+* Able to read and write m1p files
+* Created a basic hiearchy of Attributes (currently just Oscillator)
+* Defined a Parameter which is controlled via key/value pair
+* Able to randomize float values of a Parameter
