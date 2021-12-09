@@ -10,52 +10,52 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PatchIOTest {
+public class PresetIOTest {
 
-	Patch patch;
-	String patchFile;
+	Preset preset;
+	String presetFile;
 	String currentDir;
 	
 	@Before
-	public void makePatch() {
-		patch = new Patch();
+	public void makePreset() {
+		preset = new Preset();
 		
 		currentDir = System.getProperty("user.dir");
-		patchFile = currentDir + "\\bin\\patches\\WHERE IS THE BASS -LAZ.m1p";
+		presetFile = currentDir + "\\bin\\presets\\WHERE IS THE BASS -LAZ.m1p";
 	}
 	
 	@Test
-	public void testReadNullFiles() {
-		PatchIO.readPatchFile(null, null);
+	public void testReadNullFile() {
+		PresetIO.readPresetFile(null, null);
 	}
 
 	@Test
 	public void testReadNonExistingFile() {
 		
-		String nonExistingFile = currentDir + "\\bin\\BAD PATCH.m1p";
+		String nonExistingFile = currentDir + "\\bin\\BAD PRESET.m1p";
 		
-		PatchIO.readPatchFile(nonExistingFile, patch);
-		Assert.assertTrue(patch.size() == 0);
+		PresetIO.readPresetFile(nonExistingFile, preset);
+		Assert.assertTrue(preset.size() == 0);
 	}
 
 	@Test
-	public void testReadKnownPatch() {
-		PatchIO.readPatchFile(patchFile, patch);
+	public void testReadKnownPreset() {
+		PresetIO.readPresetFile(presetFile, preset);
 		
-		// This Patch has exactly 3198 Attributes
-		Assert.assertTrue(patch.size() == 3198);
+		// This Preset has exactly 3198 Attributes
+		Assert.assertTrue(preset.size() == 3198);
 	}
 
 	
 	@Test
 	public void testReadWriteIdentical() {
-		String testFile = currentDir + "\\bin\\patches\\Test.m1p";
+		String testFile = currentDir + "\\bin\\presets\\Test.m1p";
 		
-		PatchIO.readPatchFile(patchFile, patch);
+		PresetIO.readPresetFile(presetFile, preset);
 		
-		PatchIO.writePatchFile(testFile, patch);
+		PresetIO.writePresetFile(testFile, preset);
 		
-		File original = new File(patchFile);
+		File original = new File(presetFile);
 		File generated = new File(testFile);
 
 		try {

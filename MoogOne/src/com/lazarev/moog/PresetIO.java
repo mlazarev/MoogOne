@@ -13,30 +13,30 @@ import java.util.Iterator;
 
 
 /**
- * Static I/O utilities to read and write Moog One Patch files
+ * Static I/O utilities to read and write Moog One Preset files
  */
-class PatchIO {
+class PresetIO {
 
 	private final static String SEPARATOR = " ";
 	
-	public static void readPatchFile(String path, Patch patch) {
+	public static void readPresetFile(String path, Preset preset) {
 		
-		if (path == null || patch == null)
+		if (path == null || preset == null)
 		{
 			return;
 		}
 		
-		File patchFile = new File(path);
+		File presetFile = new File(path);
 		
-		if (!patchFile.exists()) {
-			System.out.println("Patch not found at [" + patchFile.getAbsolutePath() + "]");
+		if (!presetFile.exists()) {
+			System.out.println("Preset not found at [" + presetFile.getAbsolutePath() + "]");
 			return;
 		}
 		
-		System.out.println("Reading Patch at [" + patchFile.getAbsolutePath() + "]");
+		System.out.println("Reading Preset at [" + presetFile.getAbsolutePath() + "]");
 		
 		try {
-			FileInputStream fis = new FileInputStream(patchFile);
+			FileInputStream fis = new FileInputStream(presetFile);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
 			
 			String line;
@@ -47,7 +47,7 @@ class PatchIO {
 				String parameter = tokens[0];
 				String value = tokens[1];
 
-				patch.orderedAdd(parameter, value);
+				preset.orderedAdd(parameter, value);
 			}
 			
 			reader.close();
@@ -61,25 +61,25 @@ class PatchIO {
 	}
 	
 	
-	public static void writePatchFile(String path, Patch patch) {
+	public static void writePresetFile(String path, Preset preset) {
 		
-		File patchFile = new File(path);
+		File presetFile = new File(path);
 		
-		if (patchFile.exists()) {
-			System.out.println("Overwriting Patch at [" + patchFile.getAbsolutePath() + "]");
+		if (presetFile.exists()) {
+			System.out.println("Overwriting Preset at [" + presetFile.getAbsolutePath() + "]");
 		}
 		
 		try {
 			
-			FileOutputStream fos = new FileOutputStream(patchFile);
+			FileOutputStream fos = new FileOutputStream(presetFile);
 			BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(fos));
 			
 
-			Iterator<String> it = patch.iterator();
+			Iterator<String> it = preset.iterator();
 			
 			while (it.hasNext()) {
 				String parameter = it.next();
-				String value = patch.getValue(parameter);
+				String value = preset.getValue(parameter);
 				
 				writer.write(parameter);
 				writer.write(SEPARATOR);

@@ -8,12 +8,12 @@ public class MoogOne {
 		args = new String[2]; 
 		
 		String currentDir = System.getProperty("user.dir");
-		String inFile = currentDir + "\\bin\\patches\\WHERE IS THE BASS -LAZ.m1p";
-		String outFile = currentDir + "\\bin\\patches\\NEW PATCH.m1p";
+		String inFile = currentDir + "\\bin\\presets\\WHERE IS THE BASS -LAZ.m1p";
+		String outFile = currentDir + "\\bin\\presets\\NEW PRESET.m1p";
 		
 		args[0] = inFile;
 		
-		Patch patch = new Patch();
+		Preset preset = new Preset();
 		
 		/* ------------------ */
 		
@@ -23,17 +23,17 @@ public class MoogOne {
 		}
 		
 		if (args[0] != null) {
-			PatchIO.readPatchFile(args[0], patch);
+			PresetIO.readPresetFile(args[0], preset);
 		}
 		
-		System.out.println("Patch has " + patch.size() + " attributes.");
+		System.out.println("Preset has " + preset.size() + " attributes.");
 
-		PatchIO.writePatchFile(outFile, patch);
+		PresetIO.writePresetFile(outFile, preset);
 		
 	}
 
 	private static void printHelp() {
-		System.out.println("Usage: MoogOne <patch.m1p>");
+		System.out.println("Usage: MoogOne <preset.m1p>");
 	}
 	
 	
