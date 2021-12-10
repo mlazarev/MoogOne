@@ -5,9 +5,14 @@ import com.lazarev.moog.Parameter;
 public final class Oscillator extends RootModule 
 {
 	/** Here's where the actual parameters are defined with appropriate value boundaries **/
-	private static final Parameter waveangle 	= new Parameter("d", Parameter.Type.DOUBLE, 0.0, 1.0);
-	private static final Parameter octave 		= new Parameter("oct", Parameter.Type.INTEGER, -1, 3);
+	private static final Parameter waveangle 	= new Parameter("Wave Angle", "d", Parameter.Type.DOUBLE, 0.0, 1.0);
 
+	/* The octave is set at 0 for 8' (knob at 0 o'clock) going down to -2 and +2 respectively */
+	private static final Parameter octave 		= new Parameter("Octave", "oct", Parameter.Type.INTEGER, -2, 2);
+	
+	/* This is the WaveType button (only two options) : "v" = Triangle; "F" = Saw     */
+	private static final Parameter waveType		= new Parameter("Wave Type", "m", Parameter.Type.STRING, new String[] { "v", "F"} ); 
+	
 	
 	public static Parameter getWaveAngle(int synthNumber, int oscNumber)
 	{
@@ -31,13 +36,23 @@ public final class Oscillator extends RootModule
 	}
 	
 	
+	public static Parameter getWaveType(int synthNumber, int oscNumber)
+	{
+		if (!isValidSynth(synthNumber)) return null;
+		if (!isValidOsc(oscNumber)) return null;
+		
+		String key = buildOscParameterKey(waveType, synthNumber, oscNumber);
+		waveType.setStringKey(key);
+		return waveType;
+	}
+	
 	
 	/**
 	 * This will build something like this: "/p/part/t/1/p/o1/... "
 	 */
 	public static String buildOscParameterKey(Parameter parameter, int synthNumber, int oscNumber) 
 	{
-		StringBuilder sb = buildRoot(synthNumber, oscNumber).append(parameter.getName());
+		StringBuilder sb = buildRoot(synthNumber, oscNumber).append(parameter.getSuffixKey());
 		
 		return sb.toString();
 	}

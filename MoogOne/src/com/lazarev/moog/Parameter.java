@@ -2,15 +2,17 @@ package com.lazarev.moog;
 
 public class Parameter
 {
-
+	private final String name;
+	
 	public enum Type
 	{
 		STRING, DOUBLE, BOOLEAN, INTEGER
 	}
-
-	private final String name;
+	
 	private final Parameter.Type type;
 
+	private final String keySuffix;
+	
 	private String stringKey;
 	private String stringValue;
 
@@ -21,10 +23,12 @@ public class Parameter
 	private final int minIntValue;
 	private final int maxIntValue;
 	
+	private final String[] possibleValues;
 	
-	public Parameter(String name, Parameter.Type type, double minValue, double maxValue)
+	public Parameter(String name, String keySuffix, Parameter.Type type, double minValue, double maxValue)
 	{
 		this.name = name;
+		this.keySuffix = keySuffix;
 		this.type = type;
 		
 		this.minDoubleValue = minValue;
@@ -32,11 +36,14 @@ public class Parameter
 		
 		this.minIntValue = 0;
 		this.maxIntValue = 0;
+		
+		this.possibleValues = null;
 	}
 
-	public Parameter(String name, Parameter.Type type, int minValue, int maxValue)
+	public Parameter(String name, String keySuffix, Parameter.Type type, int minValue, int maxValue)
 	{
 		this.name = name;
+		this.keySuffix = keySuffix;
 		this.type = type;
 
 		this.minIntValue = minValue;
@@ -44,22 +51,43 @@ public class Parameter
 		
 		this.minDoubleValue = 0;
 		this.maxDoubleValue = 0;
+		
+		this.possibleValues = null;
 	}
 	
+	public Parameter(String name, String keySuffix, Parameter.Type type, String[] possibleValues)
+	{
+		this.name = name;
+		this.keySuffix = keySuffix;
+		this.type = type;
+
+		this.possibleValues = possibleValues;
+		
+		this.minIntValue = 0;
+		this.maxIntValue = 0;
+		this.minDoubleValue = 0;
+		this.maxDoubleValue = 0;
+	}
+	
+	
+	public String getName()
+	{
+		return name;
+	}
 	
 	public void setStringKey(String key)
 	{
 		stringKey = key;
 	}
 
-	public String getKey()
+	public String getStringKey()
 	{
 		return stringKey;
 	}
 
-	public String getName()
+	public String getSuffixKey()
 	{
-		return name;
+		return keySuffix;
 	}
 
 	public String getStringValue()
@@ -94,6 +122,10 @@ public class Parameter
 
 	public Type getType() {
 		return type;
+	}
+	
+	public String[] getPossibleStringValues() {
+		return possibleValues;
 	}
 	
 }

@@ -11,7 +11,7 @@ public class OscillatorTest
 	@Test
 	public void buildParameterKeysTest()
 	{
-		Parameter waveAngle = new Parameter("d", Parameter.Type.DOUBLE, 0.0F, 1.0F);
+		Parameter waveAngle = new Parameter("Wave", "d", Parameter.Type.DOUBLE, 0.0F, 1.0F);
 		
 		String expected = "/p/part/t/1/p/o3/d";
 		String returned = Oscillator.buildOscParameterKey(waveAngle, 1, 3);
@@ -31,7 +31,7 @@ public class OscillatorTest
 		Parameter waveAngle = Oscillator.getWaveAngle(3, 1);
 		
 		String expected = "/p/part/t/3/p/o1/d";
-		String returned = waveAngle.getKey();
+		String returned = waveAngle.getStringKey();
 		
 		Assert.assertTrue( expected.equals(returned));
 	}

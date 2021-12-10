@@ -15,6 +15,7 @@ public class PresetRandomizer
 			{
 				randomizeWaveAngle(preset, synth, oscillator);
 				randomizeOctave(preset, synth, oscillator);
+				randomizeWaveType(preset, synth, oscillator);
 			}
 		}
 	}
@@ -30,6 +31,11 @@ public class PresetRandomizer
 		setRandomValue(preset, octave);
 	}
 	
+	private static void randomizeWaveType(Preset preset, int synth, int oscillator) {
+		Parameter waveType = Oscillator.getWaveType(synth, oscillator);
+		setRandomValue(preset, waveType);
+	}
+
 	
 	/**
 	 * Random Value generator based on Type of Parameter
@@ -44,7 +50,7 @@ public class PresetRandomizer
 		
 		boolean success = false;
 	
-		String key = parameter.getKey();
+		String key = parameter.getStringKey();
 		String oldValue = preset.getValue(key);
 
 		switch(parameter.getType()) 
@@ -61,16 +67,27 @@ public class PresetRandomizer
 				success = preset.setValue(key, String.valueOf(randomDouble));
 				break;
 			}
+			case STRING:
+			{
+				String[] possibleValues = parameter.getPossibleStringValues();
+				int randomInt = makeRandomInt(0, possibleValues.length - 1);
+				String randomString = possibleValues[ randomInt ];
+				
+				// The String needs to be written with double quotes 
+				success = preset.setValue(key, "\"" + randomString + "\"");
+				break;
+			}
 		default:
 			break;
 		}
 		
 		String newValue = preset.getValue(key);
-		
+		String paramName = parameter.getName();
 		
 		if (MoogOne.isDebug) { 
 			System.out.println(
-				 "Key=[" + key + "]" + 
+				" Name=[" + paramName + "]" +	
+				" Key=[" + key + "]" + 
 			    " Old=[" + oldValue + "]" + 
 				" New=[" + newValue + "]" + 
 			    " success=" + success );
@@ -83,7 +100,7 @@ public class PresetRandomizer
 	private static int makeRandomInt(int rangeMin, int rangeMax)
 	{
 	    Random random = new Random();
-	    int randomValue = random.nextInt(rangeMax - rangeMin) + rangeMin;
+	    int randomValue = random.nextInt(rangeMax + 1 - rangeMin) + rangeMin;
 		return randomValue;
 	}
 	
