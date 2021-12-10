@@ -50,7 +50,7 @@ public class PresetRandomizer
 		
 		boolean success = false;
 	
-		String key = parameter.getStringKey();
+		String key = parameter.getKey();
 		String oldValue = preset.getValue(key);
 
 		switch(parameter.getType()) 

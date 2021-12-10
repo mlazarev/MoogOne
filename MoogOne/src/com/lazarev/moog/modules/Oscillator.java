@@ -20,7 +20,7 @@ public final class Oscillator extends RootModule
 		if (!isValidOsc(oscNumber)) return null;
 
 		String key = buildOscParameterKey(waveangle, synthNumber, oscNumber);
-		waveangle.setStringKey(key);
+		waveangle.setKey(key);
 		return waveangle;
 	}
 
@@ -31,7 +31,7 @@ public final class Oscillator extends RootModule
 		if (!isValidOsc(oscNumber)) return null;
 		
 		String key = buildOscParameterKey(octave, synthNumber, oscNumber);
-		octave.setStringKey(key);
+		octave.setKey(key);
 		return octave;
 	}
 	
@@ -42,7 +42,7 @@ public final class Oscillator extends RootModule
 		if (!isValidOsc(oscNumber)) return null;
 		
 		String key = buildOscParameterKey(waveType, synthNumber, oscNumber);
-		waveType.setStringKey(key);
+		waveType.setKey(key);
 		return waveType;
 	}
 	
@@ -52,7 +52,7 @@ public final class Oscillator extends RootModule
 	 */
 	public static String buildOscParameterKey(Parameter parameter, int synthNumber, int oscNumber) 
 	{
-		StringBuilder sb = buildRoot(synthNumber, oscNumber).append(parameter.getSuffixKey());
+		StringBuilder sb = buildRoot(synthNumber, oscNumber).append(parameter.getSuffix());
 		
 		return sb.toString();
 	}

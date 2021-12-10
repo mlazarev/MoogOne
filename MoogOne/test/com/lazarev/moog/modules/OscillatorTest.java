@@ -31,7 +31,7 @@ public class OscillatorTest
 		Parameter waveAngle = Oscillator.getWaveAngle(3, 1);
 		
 		String expected = "/p/part/t/3/p/o1/d";
-		String returned = waveAngle.getStringKey();
+		String returned = waveAngle.getKey();
 		
 		Assert.assertTrue( expected.equals(returned));
 	}

@@ -11,11 +11,12 @@ public class Parameter
 	
 	private final Parameter.Type type;
 
-	private final String keySuffix;
+	private final String suffix;
 	
 	private String stringKey;
 	private String stringValue;
 
+	
 	/** When randomizing numeric values, we want to have limits **/
 	private final double minDoubleValue;
 	private final double maxDoubleValue;
@@ -25,10 +26,11 @@ public class Parameter
 	
 	private final String[] possibleValues;
 	
-	public Parameter(String name, String keySuffix, Parameter.Type type, double minValue, double maxValue)
+	
+	public Parameter(String name, String suffix, Parameter.Type type, double minValue, double maxValue)
 	{
 		this.name = name;
-		this.keySuffix = keySuffix;
+		this.suffix = suffix;
 		this.type = type;
 		
 		this.minDoubleValue = minValue;
@@ -40,10 +42,11 @@ public class Parameter
 		this.possibleValues = null;
 	}
 
-	public Parameter(String name, String keySuffix, Parameter.Type type, int minValue, int maxValue)
+	
+	public Parameter(String name, String suffix, Parameter.Type type, int minValue, int maxValue)
 	{
 		this.name = name;
-		this.keySuffix = keySuffix;
+		this.suffix = suffix;
 		this.type = type;
 
 		this.minIntValue = minValue;
@@ -55,10 +58,11 @@ public class Parameter
 		this.possibleValues = null;
 	}
 	
-	public Parameter(String name, String keySuffix, Parameter.Type type, String[] possibleValues)
+	
+	public Parameter(String name, String suffix, Parameter.Type type, String[] possibleValues)
 	{
 		this.name = name;
-		this.keySuffix = keySuffix;
+		this.suffix = suffix;
 		this.type = type;
 
 		this.possibleValues = possibleValues;
@@ -75,19 +79,19 @@ public class Parameter
 		return name;
 	}
 	
-	public void setStringKey(String key)
+	public void setKey(String key)
 	{
 		stringKey = key;
 	}
 
-	public String getStringKey()
+	public String getKey()
 	{
 		return stringKey;
 	}
 
-	public String getSuffixKey()
+	public String getSuffix()
 	{
-		return keySuffix;
+		return suffix;
 	}
 
 	public String getStringValue()
