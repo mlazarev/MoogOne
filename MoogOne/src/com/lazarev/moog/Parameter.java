@@ -1,83 +1,118 @@
 package com.lazarev.moog;
 
-public class Parameter {
+public class Parameter
+{
 
-	public enum Type {
-		STRING, FLOAT, BOOLEAN, INTEGER
+	public enum Type
+	{
+		STRING, DOUBLE, BOOLEAN, INTEGER
 	}
-	
+
 	private final String name;
 	private final Parameter.Type type;
-	
+
 	private String stringKey;
 	private String stringValue;
+
+	/** When randomizing numeric values, we want to have limits **/
+	private double minDoubleValue;
+	private double maxDoubleValue;
 	
-	/** When randomizing numeric values, we to have specified limits **/
-	private float minValue;
-	private float maxValue;
+	private int minIntValue;
+	private int maxIntValue;
 	
 	
-	public Parameter(String name, Parameter.Type type ) {
+	public Parameter(String name, Parameter.Type type)
+	{
 		this.name = name;
 		this.type = type;
 	}
 
-	
-	public Parameter(String name, Parameter.Type type, float minValue, float maxValue ) {
+	public Parameter(String name, Parameter.Type type, double minValue, double maxValue)
+	{
 		this(name, type);
-		setMinValue(minValue);
-		setMaxValue(maxValue);
+		setMinDoubleValue(minValue);
+		setMaxDoubleValue(maxValue);
 	}
 
-
-	public void setStringKey(String key) {
+	public Parameter(String name, Parameter.Type type, int minValue, int maxValue)
+	{
+		this(name, type);
+		setMinIntValue(minValue);
+		setMaxIntValue(maxValue);
+	}
+	
+	
+	public void setStringKey(String key)
+	{
 		stringKey = key;
 	}
-	
-	public String getKey() {
+
+	public String getKey()
+	{
 		return stringKey;
 	}
-	
-	public String getName() {
+
+	public String getName()
+	{
 		return name;
 	}
-	
-	
-	public Parameter.Type getType() {
+
+	public Parameter.Type getType()
+	{
 		return type;
 	}
-	
-	
-	public String getStringValue() {
+
+	public String getStringValue()
+	{
 		return stringValue;
 	}
 
-
-	public void setStringValue(String stringValue) {
+	public void setStringValue(String stringValue)
+	{
 		this.stringValue = stringValue;
 	}
 
-
-	public float getMinValue() {
-		return minValue;
+	public double getMinDoubleValue()
+	{
+		return minDoubleValue;
 	}
 
-
-	public void setMinValue(float minValue) {
-		this.minValue = minValue;
+	public void setMinDoubleValue(double minValue)
+	{
+		this.minDoubleValue = minValue;
 	}
 
-
-	public float getMaxValue() {
-		return maxValue;
+	public double getMaxDoubleValue()
+	{
+		return maxDoubleValue;
 	}
 
-
-	public void setMaxValue(float maxValue) {
-		this.maxValue = maxValue;
+	public void setMaxDoubleValue(double maxValue)
+	{
+		this.maxDoubleValue = maxValue;
 	}
 
+	public int getMinIntValue()
+	{
+		return minIntValue;
+	}
+
+	public void setMinIntValue(int minIntValue)
+	{
+		this.minIntValue = minIntValue;
+	}
+
+	public int getMaxIntValue()
+	{
+		return maxIntValue;
+	}
+
+	public void setMaxIntValue(int maxIntValue)
+	{
+		this.maxIntValue = maxIntValue;
+	}
 
 	
-
+	
 }

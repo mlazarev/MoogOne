@@ -2,7 +2,7 @@ package com.lazarev.moog;
 
 public class MoogOne {
 
-	public final static boolean isDebug = false;
+	public final static boolean isDebug = true;
 	
 	public static void main(String[] args) {
 		

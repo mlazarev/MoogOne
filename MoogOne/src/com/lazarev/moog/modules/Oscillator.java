@@ -2,46 +2,57 @@ package com.lazarev.moog.modules;
 
 import com.lazarev.moog.Parameter;
 
-public class Oscillator {
-
-	private static final StringBuilder sb = new StringBuilder();
+public final class Oscillator extends RootModule 
+{
 	
-	public static Parameter getWaveAngle(int synthNumber, int oscNumber) {
-		
+	private static final Parameter waveangle 	= new Parameter("d", Parameter.Type.DOUBLE, 0.0, 1.0);
+	private static final Parameter octave 		= new Parameter("oct", Parameter.Type.INTEGER, -1, 3);
+
+	public static Parameter getWaveAngle(int synthNumber, int oscNumber)
+	{
 		if (!isValidSynth(synthNumber)) return null;
 		if (!isValidOsc(oscNumber)) return null;
 
-		Parameter waveangle = new Parameter("d", Parameter.Type.FLOAT, 0.0F, 1.0F);
-
-		String stringKey = buildCommonRoot(synthNumber, oscNumber).append(waveangle.getName()).toString();
-
-		waveangle.setStringKey(stringKey);
-
+		String key = buildOscParameterKey(waveangle, synthNumber, oscNumber);
+		waveangle.setStringKey(key);
 		return waveangle;
 	}
 
 	
-	private static StringBuilder buildCommonRoot(int synthNumber, int oscNumber) {
-		sb.setLength(0);
+	public static Parameter getOctave(int synthNumber, int oscNumber)
+	{
+		if (!isValidSynth(synthNumber)) return null;
+		if (!isValidOsc(oscNumber)) return null;
 		
-		sb	.append("/p")
-			.append("/part")
-			.append("/t")
-			.append("/").append(synthNumber)
-			.append("/p")
-			.append("/o").append(oscNumber)
+		String key = buildOscParameterKey(octave, synthNumber, oscNumber);
+		octave.setStringKey(key);
+		return octave;
+	}
+	
+	
+	
+	/**
+	 * This will build something like this: "/p/part/t/1/p/o1/... "
+	 */
+	public static String buildOscParameterKey(Parameter parameter, int synthNumber, int oscNumber) 
+	{
+		StringBuilder sb = buildRoot(synthNumber, oscNumber).append(parameter.getName());
+		
+		return sb.toString();
+	}
+	
+	
+	private static StringBuilder buildRoot(int synthNumber, int oscNumber) 
+	{
+		StringBuilder sb = buildCommonRoot();
+		
+		sb	.append("/t").append("/").append(synthNumber)
+			.append("/p").append("/o").append(oscNumber)
 			.append("/");
 		
 		return sb;
 	}
 	
 	
-	private static boolean isValidSynth(int synthNumber) {
-		return (synthNumber >= 1 && synthNumber <= 3);
-	}
-
-	private static boolean isValidOsc(int oscNumber) {
-		return (oscNumber >= 1 && oscNumber <= 3);
-	}
 
 }
