@@ -2,6 +2,8 @@ package com.lazarev.moog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Iterator;
 
 /**
@@ -18,10 +20,10 @@ public class Preset
 {
 
 	/* A map of Key to Value Preset parameters */
-	private final HashMap<String, String> map;
+	private final Map<String, String> map;
 
 	/* We want to be safe and maintain the order of keys */
-	private final ArrayList<String> orderedKeyList;
+	private final List<String> orderedKeyList;
 
 	public Preset()
 	{
