@@ -15,31 +15,35 @@ public class Parameter
 	private String stringValue;
 
 	/** When randomizing numeric values, we want to have limits **/
-	private double minDoubleValue;
-	private double maxDoubleValue;
+	private final double minDoubleValue;
+	private final double maxDoubleValue;
 	
-	private int minIntValue;
-	private int maxIntValue;
+	private final int minIntValue;
+	private final int maxIntValue;
 	
 	
-	public Parameter(String name, Parameter.Type type)
+	public Parameter(String name, Parameter.Type type, double minValue, double maxValue)
 	{
 		this.name = name;
 		this.type = type;
-	}
-
-	public Parameter(String name, Parameter.Type type, double minValue, double maxValue)
-	{
-		this(name, type);
-		setMinDoubleValue(minValue);
-		setMaxDoubleValue(maxValue);
+		
+		this.minDoubleValue = minValue;
+		this.maxDoubleValue = maxValue;
+		
+		this.minIntValue = 0;
+		this.maxIntValue = 0;
 	}
 
 	public Parameter(String name, Parameter.Type type, int minValue, int maxValue)
 	{
-		this(name, type);
-		setMinIntValue(minValue);
-		setMaxIntValue(maxValue);
+		this.name = name;
+		this.type = type;
+
+		this.minIntValue = minValue;
+		this.maxIntValue = maxValue;
+		
+		this.minDoubleValue = 0;
+		this.maxDoubleValue = 0;
 	}
 	
 	
@@ -58,11 +62,6 @@ public class Parameter
 		return name;
 	}
 
-	public Parameter.Type getType()
-	{
-		return type;
-	}
-
 	public String getStringValue()
 	{
 		return stringValue;
@@ -78,19 +77,9 @@ public class Parameter
 		return minDoubleValue;
 	}
 
-	public void setMinDoubleValue(double minValue)
-	{
-		this.minDoubleValue = minValue;
-	}
-
 	public double getMaxDoubleValue()
 	{
 		return maxDoubleValue;
-	}
-
-	public void setMaxDoubleValue(double maxValue)
-	{
-		this.maxDoubleValue = maxValue;
 	}
 
 	public int getMinIntValue()
@@ -98,21 +87,13 @@ public class Parameter
 		return minIntValue;
 	}
 
-	public void setMinIntValue(int minIntValue)
-	{
-		this.minIntValue = minIntValue;
-	}
-
 	public int getMaxIntValue()
 	{
 		return maxIntValue;
 	}
 
-	public void setMaxIntValue(int maxIntValue)
-	{
-		this.maxIntValue = maxIntValue;
+	public Type getType() {
+		return type;
 	}
-
-	
 	
 }

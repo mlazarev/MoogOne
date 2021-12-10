@@ -4,10 +4,11 @@ import com.lazarev.moog.Parameter;
 
 public final class Oscillator extends RootModule 
 {
-	
+	/** Here's where the actual parameters are defined with appropriate value boundaries **/
 	private static final Parameter waveangle 	= new Parameter("d", Parameter.Type.DOUBLE, 0.0, 1.0);
 	private static final Parameter octave 		= new Parameter("oct", Parameter.Type.INTEGER, -1, 3);
 
+	
 	public static Parameter getWaveAngle(int synthNumber, int oscNumber)
 	{
 		if (!isValidSynth(synthNumber)) return null;
