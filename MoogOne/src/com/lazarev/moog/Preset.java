@@ -75,11 +75,8 @@ public class Preset
 	{
 		StringBuilder sb = new StringBuilder();
 
-		Iterator<String> it = orderedKeyList.iterator();
-
-		while (it.hasNext())
+		for (String key : orderedKeyList)
 		{
-			String key = it.next();
 			String value = map.get(key);
 
 			sb.append(key).append(" ").append(value).append('\n');
