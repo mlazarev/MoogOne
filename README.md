@@ -21,6 +21,6 @@ The source in this repository is written in Java. The local execution of the pro
 It's December of 2021 and this project is actively being developed. If six months have passed since this date and no comits have been made, it's possible for it to become stale. Otherwise, here's where we are:
 
 * Able to read and write m1p files
-* Created a basic hiearchy of Attributes (currently just Oscillator)
-* Defined a Parameter which is controlled via key/value pair
-* Able to randomize float values of a Parameter
+* Created a basic hiearchy of Modules (currently working with Oscillator)
+* Defined Parameter types (double, int, string, boolean) which are backed by strongly typed key/value pair
+* Able to randomize values of a Parameter (double, int, and possible strings)
