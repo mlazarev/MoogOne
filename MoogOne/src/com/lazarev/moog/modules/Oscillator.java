@@ -1,20 +1,26 @@
 package com.lazarev.moog.modules;
 
-import com.lazarev.moog.Parameter;
+import com.lazarev.moog.parameters.Parameter;
+import com.lazarev.moog.parameters.DoubleParameter;
+import com.lazarev.moog.parameters.IntParameter;
+import com.lazarev.moog.parameters.StringParameter;
 
 public final class Oscillator extends RootModule 
 {
 	/** Here's where the actual parameters are defined with appropriate value boundaries **/
-	private static final Parameter waveangle 	= new Parameter("Wave Angle", "d", Parameter.Type.DOUBLE, 0.0, 1.0);
+	
+	/* This parameter controls two separate values depending on the Wave Type */
+	private static final DoubleParameter waveangle = new DoubleParameter("Wave Angle", "d", 0.0, 1.0);
 
 	/* The octave is set at 0 for 8' (knob at 0 o'clock) going down to -2 and +2 respectively */
-	private static final Parameter octave 		= new Parameter("Octave", "oct", Parameter.Type.INTEGER, -2, 2);
+	private static final IntParameter octave = new IntParameter("Octave", "oct", -2, 2);
 	
 	/* This is the WaveType button (only two options) : "v" = Triangle; "F" = Saw     */
-	private static final Parameter waveType		= new Parameter("Wave Type", "m", Parameter.Type.STRING, new String[] { "v", "F"} ); 
+	private static final StringParameter waveType = new StringParameter("Wave Type", "m", new String[] { "v", "F"} ); 
 	
 	
-	public static Parameter getWaveAngle(int synthNumber, int oscNumber)
+
+	public static DoubleParameter getWaveAngle(int synthNumber, int oscNumber)
 	{
 		if (!isValidSynth(synthNumber)) return null;
 		if (!isValidOsc(oscNumber)) return null;
@@ -25,7 +31,7 @@ public final class Oscillator extends RootModule
 	}
 
 	
-	public static Parameter getOctave(int synthNumber, int oscNumber)
+	public static IntParameter getOctave(int synthNumber, int oscNumber)
 	{
 		if (!isValidSynth(synthNumber)) return null;
 		if (!isValidOsc(oscNumber)) return null;
@@ -36,7 +42,7 @@ public final class Oscillator extends RootModule
 	}
 	
 	
-	public static Parameter getWaveType(int synthNumber, int oscNumber)
+	public static StringParameter getWaveType(int synthNumber, int oscNumber)
 	{
 		if (!isValidSynth(synthNumber)) return null;
 		if (!isValidOsc(oscNumber)) return null;

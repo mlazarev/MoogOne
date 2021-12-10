@@ -17,7 +17,7 @@ public class MoogOne {
 		
 		Preset preset = new Preset();
 		
-		/* ------------------ */
+		/* ----------------------------------------------------------------------- */
 		
 		if (args.length==0) {
 			printHelp();

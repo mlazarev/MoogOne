@@ -1,8 +1,7 @@
 package com.lazarev.moog;
 
-import java.util.Random;
-
 import com.lazarev.moog.modules.Oscillator;
+import com.lazarev.moog.parameters.Parameter;
 
 public class PresetRandomizer
 {
@@ -52,34 +51,9 @@ public class PresetRandomizer
 	
 		String key = parameter.getKey();
 		String oldValue = preset.getValue(key);
-
-		switch(parameter.getType()) 
-		{
-			case INTEGER:
-			{
-				int randomInt = makeRandomInt(parameter.getMinIntValue(), parameter.getMaxIntValue());
-				success = preset.setValue(key, String.valueOf(randomInt));
-				break;
-			}
-			case DOUBLE:
-			{
-				double randomDouble = makeRandomDouble(parameter.getMinDoubleValue(), parameter.getMaxDoubleValue());
-				success = preset.setValue(key, String.valueOf(randomDouble));
-				break;
-			}
-			case STRING:
-			{
-				String[] possibleValues = parameter.getPossibleStringValues();
-				int randomInt = makeRandomInt(0, possibleValues.length - 1);
-				String randomString = possibleValues[ randomInt ];
-				
-				// The String needs to be written with double quotes 
-				success = preset.setValue(key, "\"" + randomString + "\"");
-				break;
-			}
-		default:
-			break;
-		}
+		
+		
+		success = preset.setValue(key, parameter.getRandomValue());
 		
 		String newValue = preset.getValue(key);
 		String paramName = parameter.getName();
@@ -94,22 +68,6 @@ public class PresetRandomizer
 		}
 	}
 	
-	
-	/** ---------- RANDOM NUMBER GENERATORS -------------- **/
-	
-	private static int makeRandomInt(int rangeMin, int rangeMax)
-	{
-	    Random random = new Random();
-	    int randomValue = random.nextInt(rangeMax + 1 - rangeMin) + rangeMin;
-		return randomValue;
-	}
-	
-	private static double makeRandomDouble(double rangeMin, double rangeMax)
-	{
-		Random random = new Random();
-		double randomValue = rangeMin + (rangeMax - rangeMin) * random.nextDouble();
-		return randomValue;
-	}
 	
 	
 }
