@@ -17,7 +17,8 @@ import java.util.Iterator;
  */
 class PresetIO {
 
-	private final static String SEPARATOR = " ";
+	private final static String SEPARATOR  = " ";
+	private final static String TERMINATOR = "\n"; 
 	
 	public static void readPresetFile(String path, Preset preset) {
 		
@@ -61,7 +62,6 @@ class PresetIO {
 	}
 	
 	
-	// TODO: Need to change the Preset Name before writing
 	public static void writePresetFile(String path, Preset preset) {
 		
 		File presetFile = new File(path);
@@ -79,13 +79,13 @@ class PresetIO {
 			Iterator<String> it = preset.iterator();
 			
 			while (it.hasNext()) {
-				String parameter = it.next();
-				String value = preset.getValue(parameter);
+				String key = it.next();
+				String value = preset.getValue(key);
 				
-				writer.write(parameter);
+				writer.write(key);
 				writer.write(SEPARATOR);
 				writer.write(value);
-				writer.write('\n');
+				writer.write(TERMINATOR);
 			}
 			
 			writer.flush();

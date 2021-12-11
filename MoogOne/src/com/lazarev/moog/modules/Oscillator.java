@@ -10,7 +10,7 @@ public final class Oscillator extends RootModule
 	/** Here's where the actual parameters are defined with appropriate value boundaries **/
 	
 	/* This parameter controls two separate values depending on the Wave Type */
-	private static final DoubleParameter waveangle = new DoubleParameter("Wave Angle", "d", 0.0, 1.0);
+	private static final DoubleParameter waveAngle = new DoubleParameter("Wave Angle", "d", 0.0, 1.0);
 
 	/* The octave is set at 0 for 8' (knob at 0 o'clock) going down to -2 and +2 respectively */
 	private static final IntParameter octave = new IntParameter("Octave", "oct", -2, 2);
@@ -25,9 +25,9 @@ public final class Oscillator extends RootModule
 		if (!isValidSynth(synthNumber)) return null;
 		if (!isValidOsc(oscNumber)) return null;
 
-		String key = buildOscParameterKey(waveangle, synthNumber, oscNumber);
-		waveangle.setKey(key);
-		return waveangle;
+		String key = buildOscParameterKey(waveAngle, synthNumber, oscNumber);
+		waveAngle.setKey(key);
+		return waveAngle;
 	}
 
 	

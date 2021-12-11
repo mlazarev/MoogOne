@@ -20,25 +20,22 @@ public class PresetRandomizer
 	}
 	
 	
-	private static void randomizeWaveAngle(Preset preset, int synth, int oscillator) {
+	public static void randomizeWaveAngle(Preset preset, int synth, int oscillator) {
 		Parameter waveAngle = Oscillator.getWaveAngle(synth, oscillator);
 		setRandomValue(preset, waveAngle);
 	}		
 	
-	private static void randomizeOctave(Preset preset, int synth, int oscillator) {
+	public static void randomizeOctave(Preset preset, int synth, int oscillator) {
 		Parameter octave = Oscillator.getOctave(synth, oscillator);
 		setRandomValue(preset, octave);
 	}
 	
-	private static void randomizeWaveType(Preset preset, int synth, int oscillator) {
+	public static void randomizeWaveType(Preset preset, int synth, int oscillator) {
 		Parameter waveType = Oscillator.getWaveType(synth, oscillator);
 		setRandomValue(preset, waveType);
 	}
 
 	
-	/**
-	 * Random Value generator based on Type of Parameter
-	 */
 	private static void setRandomValue(Preset preset, Parameter parameter) 
 	{
 		if (parameter == null) 
@@ -47,13 +44,10 @@ public class PresetRandomizer
 			return;
 		}
 		
-		boolean success = false;
-	
 		String key = parameter.getKey();
 		String oldValue = preset.getValue(key);
 		
-		
-		success = preset.setValue(key, parameter.getRandomValue());
+		boolean success = preset.setValue(key, parameter.getRandomValue());
 		
 		String newValue = preset.getValue(key);
 		String paramName = parameter.getName();
@@ -67,7 +61,5 @@ public class PresetRandomizer
 			    " success=" + success );
 		}
 	}
-	
-	
 	
 }

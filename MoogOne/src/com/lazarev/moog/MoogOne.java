@@ -1,8 +1,22 @@
 package com.lazarev.moog;
 
+/**
+ * START HERE
+ * 
+ * @author Mike Lazarev
+ *
+ *
+ * TODO : Work off of DEFAULT Template instead of the Bass
+ * TODO : Need to change the Preset Name before writing
+ * TODO : Randomize all oscillator parameters
+ * TODO : Enable all Synths
+ * TODO : Check on Mixing volumes
+ *
+ */
+
 public class MoogOne {
 
-	public final static boolean isDebug = true;
+	public static boolean isDebug = true;
 	
 	public static void main(String[] args) {
 		

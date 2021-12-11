@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.lazarev.moog.parameters.Parameter;
+
 import java.util.Iterator;
 
 /**
@@ -13,8 +16,6 @@ import java.util.Iterator;
  * in a sequence and call {@link #getValue(String)} for each one. I'm not sure
  * if a proper order is required, but all of the Moog One Presets appear to be
  * saved in the same one
- * 
- * @author Mike Lazarev
  */
 public class Preset
 {
@@ -45,11 +46,22 @@ public class Preset
 		orderedKeyList.add(parameter);
 	}
 
-	public String getValue(String parameter)
+	public void orderedAdd(Parameter parameter, String value)
 	{
-		return map.get(parameter);
+		orderedAdd(parameter.getKey(), value);
 	}
-
+	
+	public String getValue(String key)
+	{
+		return map.get(key);
+	}
+	
+	public String getValue(Parameter parameter)
+	{
+		return getValue(parameter.getKey());
+	}
+	
+	
 	public boolean setValue(String parameter, String value)
 	{
 		if (!map.containsKey(parameter))
