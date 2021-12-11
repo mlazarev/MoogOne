@@ -6,12 +6,14 @@ public class StringParameter extends Parameter
 {
 
 	private final String possibleValues[];
+	private final String defaultValue;
 	
-	public StringParameter(String name, String suffix, String[] possibleValues )
+	public StringParameter(String name, String suffix, String[] possibleValues, String defaultValue)
 	{
 		super(name, suffix, Type.STRING);
 		
 		this.possibleValues = possibleValues;
+		this.defaultValue = defaultValue;
 		
 		encloseInDoubleQuotes();
 	}
@@ -35,4 +37,24 @@ public class StringParameter extends Parameter
 		return possibleValues[ randomInt ];
 	}
 
+	
+	@Override
+	public String getMinValue() 
+	{
+		return possibleValues[0];
+	}
+	
+	@Override
+	public String getMaxValue() 
+	{
+		int maxValue = possibleValues.length - 1;
+		return possibleValues[maxValue];
+	}
+	
+	@Override
+	public String getDefaultValue() 
+	{
+		return String.valueOf(defaultValue);
+	}
+	
 }

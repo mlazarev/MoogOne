@@ -21,7 +21,7 @@ public class PresetIOTest {
 		preset = new Preset();
 		
 		currentDir = System.getProperty("user.dir");
-		presetFile = currentDir + "\\bin\\presets\\WHERE IS THE BASS -LAZ.m1p";
+		presetFile = currentDir + "\\src\\presets\\INIT0.m1p";
 	}
 	
 	@Test

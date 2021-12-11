@@ -1,5 +1,6 @@
 package com.lazarev.moog;
 
+import com.lazarev.moog.modules.Mixer;
 import com.lazarev.moog.modules.Oscillator;
 import com.lazarev.moog.parameters.Parameter;
 
@@ -15,9 +16,13 @@ public class PresetRandomizer
 				randomizeWaveAngle(preset, synth, oscillator);
 				randomizeOctave(preset, synth, oscillator);
 				randomizeWaveType(preset, synth, oscillator);
+				
+				setMaxGain(preset, synth, oscillator);
+				//turnOnAllFilters(preset, synth, oscillator);
 			}
 		}
 	}
+	
 	
 	
 	public static void randomizeWaveAngle(Preset preset, int synth, int oscillator) {
@@ -61,5 +66,29 @@ public class PresetRandomizer
 			    " success=" + success );
 		}
 	}
+	
+	
+	public static void setMaxGain(Preset preset, int synth, int oscillator) 
+	{
+		Parameter parameter = Mixer.getGain(synth, oscillator);
+		String key = parameter.getKey();
+		String oldValue = preset.getValue(key);
+		
+		boolean success = preset.setValue(key, parameter.getMaxValue());
+		
+		String newValue = preset.getValue(key);
+		String paramName = parameter.getName();
+		
+		if (MoogOne.isDebug) { 
+			System.out.println(
+				" Name=[" + paramName + "]" +	
+				" Key=[" + key + "]" + 
+			    " Old=[" + oldValue + "]" + 
+				" New=[" + newValue + "]" + 
+			    " success=" + success );
+		}
+	}
+	
+	
 	
 }

@@ -28,6 +28,12 @@ public abstract class Parameter
 	
 	public abstract String getRandomValue();
 	
+	public abstract String getMaxValue();
+	
+	public abstract String getMinValue();
+	
+	public abstract String getDefaultValue();
+	
 	
 	public String getName()
 	{

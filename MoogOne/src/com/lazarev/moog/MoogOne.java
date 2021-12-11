@@ -24,8 +24,8 @@ public class MoogOne {
 		args = new String[2]; 
 		
 		String currentDir = System.getProperty("user.dir");
-		String inFile = currentDir + "\\bin\\presets\\WHERE IS THE BASS -LAZ.m1p";
-		String outFile = currentDir + "\\bin\\presets\\NEW PRESET.m1p";
+		String inFile = currentDir + "\\src\\presets\\INIT0.m1p";
+		String outFile = currentDir + "\\src\\presets\\NEW PRESET.m1p";
 		
 		args[0] = inFile;
 		
