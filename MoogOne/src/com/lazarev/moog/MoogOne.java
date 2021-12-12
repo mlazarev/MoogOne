@@ -5,12 +5,8 @@ package com.lazarev.moog;
  * 
  * @author Mike Lazarev
  *
- *
- * TODO : Work off of DEFAULT Template instead of the Bass
  * TODO : Need to change the Preset Name before writing
- * TODO : Randomize all oscillator parameters
  * TODO : Enable all Synths
- * TODO : Check on Mixing volumes
  *
  */
 
@@ -25,7 +21,7 @@ public class MoogOne {
 		
 		String currentDir = System.getProperty("user.dir");
 		String inFile = currentDir + "\\src\\presets\\INIT0.m1p";
-		String outFile = currentDir + "\\src\\presets\\A RANDOM PRESET.m1p";
+		String outFile = currentDir + "\\src\\presets\\";
 		
 		args[0] = inFile;
 		
@@ -40,13 +36,22 @@ public class MoogOne {
 		
 		if (args[0] != null) {
 			PresetIO.readPresetFile(args[0], preset);
+			System.out.println("Preset has " + preset.size() + " attributes.");
 		}
 		
-		System.out.println("Preset has " + preset.size() + " attributes.");
-
-		PresetRandomizer.randomizeAllOscillators(preset);
 		
-		PresetIO.writePresetFile(outFile, preset);
+		int newPresets = 5;
+		System.out.println("Generating " + newPresets + " new Presets");
+		
+		for (int i = 1; i <= newPresets; i++)
+		{
+			String newFile = outFile + "A RANDOM PRESET " + i + ".m1p";
+
+			PresetRandomizer.randomizeAllOscillators(preset);
+			
+			PresetIO.writePresetFile(newFile, preset);
+ 		}
+		
 		
 	}
 

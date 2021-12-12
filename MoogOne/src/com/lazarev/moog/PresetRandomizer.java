@@ -16,7 +16,8 @@ public class PresetRandomizer
 		for (int synth = 1; synth < 4; synth++)
 		{
 
-			// Oscillators 1 through 3
+			if (MoogOne.isDebug) System.out.println("--- OSCILLATORS ---");
+			
 			for (int oscillator = 1; oscillator < 4; oscillator++)
 			{
 				if (MoogOne.isDebug) System.out.println("Randomizing Oscillators. Synth=[" + synth + "] Oscillator=[" + oscillator + "]" );
@@ -28,8 +29,8 @@ public class PresetRandomizer
 				randomizePulseBalance(preset, synth, oscillator);
 			}
 			
+			if (MoogOne.isDebug) System.out.println("--- MIX SOURCES ---");
 
-			// Mix Sources
 			for (int i = 0; i < Mixer.SOURCES.length; i++)
 			{
 				String source = Mixer.SOURCES[i];
@@ -38,8 +39,9 @@ public class PresetRandomizer
 				randomizeGain(preset, synth, source);
 				randomizeFilterRouting(preset, synth, source);	
 			}
-			
 		}
+		
+		if (MoogOne.isDebug) System.out.println("--- RANDOMIZATION COMPLETE ---");
 	}
 	
 	
@@ -82,7 +84,7 @@ public class PresetRandomizer
 		setRandomValue(preset, filterSVF);
 		setRandomValue(preset, filterLadder);
 		
-		// If both filters are set to Off we will not hear this Oscillator at all. Turn SVF On.
+		// If both filters are set to Off we will not hear this Source at all. Turn SVF On.
 		if (preset.getValue(filterSVF).equals("false") && preset.getValue(filterLadder).equals("false"))
 		{
 			preset.setValue(filterSVF.getKey(), filterSVF.getMaxValue());
@@ -116,7 +118,7 @@ public class PresetRandomizer
 		
 		// Pretty Print
 		System.out.println(
-			" \t Name=[" + String.format("%-" + 16 + "s", parameter.getName()) + "]"	
+			"  Name=[" + String.format("%-" + 16 + "s", parameter.getName()) + "]"	
 			+ " \t Key=[" + String.format("%-" + 24 + "s", parameter.getKey()) + "]" 
 		    + " \t Old=[" + String.format("%-" + 24 + "s", oldValue) + "]"
 			+ " \t New=[" + String.format("%-" + 24 + "s", preset.getValue(parameter)) + "]"  
