@@ -27,6 +27,6 @@ It's December of 2021 and this project is actively being developed. If six month
 * Able to randomize values (Double, Integer, and possible Strings)
 
 #### Synth
-* Randomized Oscillator Parameters (Wave Type, Angle, Octae, Pulse Width and Balance)
+* Randomized Oscillator Parameters (Wave Type, Angle, Octave, Pulse Width and Balance)
 * Randomized Mixing Module Sources (Oscillators 1-3, RingMod and Noise)
 * Randomized Filter routing with at least one Filter being selected
