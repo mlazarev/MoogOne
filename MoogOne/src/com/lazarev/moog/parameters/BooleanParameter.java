@@ -1,5 +1,7 @@
 package com.lazarev.moog.parameters;
 
+import com.lazarev.moog.utils.RandomNumbers;
+
 public class BooleanParameter extends Parameter
 {
 
@@ -15,28 +17,18 @@ public class BooleanParameter extends Parameter
 	@Override
 	public String getRandomValue()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		int randomInt = RandomNumbers.makeRandomInt(0, 1);
+		return (randomInt == 0) ? "true" : "false";
 	}
 
 	
 	@Override
-	public String getMaxValue()
-	{
-		return "true";
-	}
+	public String getMaxValue() { return "true"; }
 
 	@Override
-	public String getMinValue()
-	{
-		return "false";
-	}
+	public String getMinValue()	{ return "false"; }
 
 	@Override
-	public String getDefaultValue()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public String getDefaultValue()	{ return (defaultValue) ? "true" : "false";	}
 
 }

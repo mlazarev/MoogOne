@@ -1,14 +1,16 @@
 package com.lazarev.moog.modules;
 
+
 abstract class RootModule
 {
 	
 	private static final StringBuilder sb = new StringBuilder();
 
+	
 	static StringBuilder buildCommonRoot()
 	{
 		sb.setLength(0);
-		sb.append("/p").append("/part"); // We will learn what all this means later
+		sb.append("/p").append("/part"); // We will learn what all this means later. Maybe...
 		return sb;
 	}
 

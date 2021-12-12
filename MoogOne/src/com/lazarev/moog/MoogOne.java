@@ -25,7 +25,7 @@ public class MoogOne {
 		
 		String currentDir = System.getProperty("user.dir");
 		String inFile = currentDir + "\\src\\presets\\INIT0.m1p";
-		String outFile = currentDir + "\\src\\presets\\NEW PRESET.m1p";
+		String outFile = currentDir + "\\src\\presets\\A RANDOM PRESET.m1p";
 		
 		args[0] = inFile;
 		

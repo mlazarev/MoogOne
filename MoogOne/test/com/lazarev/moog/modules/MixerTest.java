@@ -9,9 +9,9 @@ public class MixerTest
 {
 
 	@Test
-	public void getWaveAngleTest()
+	public void getGainTest()
 	{
-		Parameter gain = Mixer.getGain(1, 3);
+		Parameter gain = Mixer.getGain(1, Mixer.SOURCE_OSC3);
 		
 		String expected = "/p/part/t/1/p/mix/o3/g";
 		String returned = gain.getKey();

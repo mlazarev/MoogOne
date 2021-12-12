@@ -15,11 +15,11 @@ public class OscillatorTest
 		DoubleParameter waveAngle = new DoubleParameter("Wave", "d", 0.0, 1.0, 1.0);
 		
 		String expected = "/p/part/t/1/p/o3/d"; 
-		String returned = Oscillator.buildOscParameterKey(waveAngle, 1, 3);
+		String returned = Oscillator.buildParameterKey(waveAngle, 1, 3);
 		Assert.assertTrue( expected.equals(returned));
 		
 		expected = "/p/part/t/2/p/o1/d"; 
-		returned = Oscillator.buildOscParameterKey(waveAngle, 2, 1); 
+		returned = Oscillator.buildParameterKey(waveAngle, 2, 1); 
 		Assert.assertTrue(expected.equals(returned));
 	}
 	

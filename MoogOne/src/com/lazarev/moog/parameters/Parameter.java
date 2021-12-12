@@ -25,7 +25,6 @@ public abstract class Parameter
 		this.type = type;
 	}
 	
-	
 	public abstract String getRandomValue();
 	
 	public abstract String getMaxValue();
