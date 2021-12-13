@@ -27,6 +27,9 @@ It's December of 2021 and this project is actively being developed. If six month
 * Able to randomize values (Double, Integer, and possible Strings)
 
 #### Synth
-* Randomized Oscillator Parameters (Wave Type, Angle, Octave, Pulse Width and Balance)
+* Randomizing Oscillator Parameters: Octave, Wave Type, Wave Angle, Pulse Width and Pulse Balance
+  * Not touching Frequency, Beat Freq or Hard Sync settings
 * Randomized Mixing Module Sources (Oscillators 1-3, RingMod and Noise)
-* Randomized Filter routing with at least one Filter being selected
+  * Noise gain is cut by 50% to reduce intensity 
+* Randomized Filter Routing
+  * Insuring that at least one filter is selected for each source
