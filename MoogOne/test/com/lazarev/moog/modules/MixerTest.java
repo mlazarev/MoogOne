@@ -20,4 +20,18 @@ public class MixerTest
 	}
 	
 	
+	@Test
+	public void getPulseBalanceForNoise()
+	{
+		Parameter balance = Mixer.getPulseBalance(1, Mixer.SOURCE_NOISE);
+		Assert.assertNull(balance);
+		
+		balance = Mixer.getPulseBalance(1, Mixer.SOURCE_RINGMOD);
+		Assert.assertNull(balance);
+		
+		balance = Mixer.getPulseBalance(1, Mixer.SOURCE_OSC1);
+		System.out.println(balance);
+		Assert.assertNotNull(balance);
+	}
+	
 }

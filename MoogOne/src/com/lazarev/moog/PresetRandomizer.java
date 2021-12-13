@@ -3,6 +3,7 @@ package com.lazarev.moog;
 import com.lazarev.moog.modules.Mixer;
 import com.lazarev.moog.modules.Oscillator;
 import com.lazarev.moog.modules.Pulse;
+import com.lazarev.moog.parameters.DoubleParameter;
 import com.lazarev.moog.parameters.Parameter;
 
 public class PresetRandomizer
@@ -84,9 +85,11 @@ public class PresetRandomizer
 		setRandomValue(preset, filterSVF);
 		setRandomValue(preset, filterLadder);
 		
+		
 		// If both filters are set to Off we will not hear this Source at all. Turn SVF On.
 		if (preset.getValue(filterSVF).equals("false") && preset.getValue(filterLadder).equals("false"))
 		{
+			if (MoogOne.isDebug) System.out.println("* Both Filters are off, switching SVF to [ON]");
 			preset.setValue(filterSVF.getKey(), filterSVF.getMaxValue());
 			printDebug(preset, filterSVF, "false", true);
 		}
@@ -97,7 +100,16 @@ public class PresetRandomizer
 	public static void randomizeGain(Preset preset, int synth, String source)
 	{
 		Parameter gain = Mixer.getGain(synth, source);
+		
 		setRandomValue(preset, gain);
+		
+		// Reduce Noise by 50%
+		if (source == Mixer.SOURCE_NOISE) 
+		{
+			double multiplier = 0.5;
+			if (MoogOne.isDebug) System.out.println("* The Mix Source is NOISE. Applying multiplier of [" + multiplier +"]");
+			applyMultiplier(preset, (DoubleParameter) gain, multiplier);
+		} 
 	}
 	
 	
@@ -110,6 +122,21 @@ public class PresetRandomizer
 		
 		printDebug(preset, parameter, oldValue, success);
 	}
+	
+	
+	private static void applyMultiplier(Preset preset, DoubleParameter parameter, double multiplier) 
+	{
+		String key = parameter.getKey();
+		String oldValueString = preset.getValue(key);
+		
+		double oldValue = Double.parseDouble(oldValueString);
+		double newValue = oldValue * multiplier;
+		
+		boolean success = preset.setValue(key, String.valueOf(newValue));
+		
+		printDebug(preset, parameter, oldValueString, success);
+	}
+	
 	
 	
 	private static void printDebug(Preset preset, Parameter parameter, String oldValue, boolean success) 

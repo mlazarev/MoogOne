@@ -75,4 +75,15 @@ public abstract class Parameter
 		return type;
 	}
 	
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("Name=[").append(name)
+			.append("] Type=[").append(type)
+			.append("] Key=[").append(stringKey)
+			.append("] Value=[").append(stringValue)
+			.append("]");
+		return sb.toString();
+	}
+	
 }

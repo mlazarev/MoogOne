@@ -55,7 +55,13 @@ public class Mixer extends RootModule
 	static Parameter getParameter(Parameter parameter, int synthNumber, String source) 
 	{
 		if (!isValidSynth(synthNumber)) return null;
-
+		
+		// Cannot have "Pulse Balance" for Noise and RingMod
+		if (parameter.getName() == pulseBalance.getName())
+		{
+			if (source == SOURCE_NOISE || source == SOURCE_RINGMOD) return null;
+		}
+		
 		String key = buildParameterKey(parameter, synthNumber, source);
 		parameter.setKey(key);
 		return parameter;
