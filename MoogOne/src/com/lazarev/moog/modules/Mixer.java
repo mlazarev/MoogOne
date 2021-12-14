@@ -21,7 +21,7 @@ public class Mixer extends RootModule
 	private static final DoubleParameter gain 			= new DoubleParameter("Gain", "g", 0.0, 1.0, 0.6658121347427368);
 
 	/* Filter Routing */
-	private static final BooleanParameter filterSVF 	= new BooleanParameter("Filter SVF", "fa", false);
+	private static final BooleanParameter filterSVF 	= new BooleanParameter("Filter SVF", 	"fa", false);
 	private static final BooleanParameter filterLadder 	= new BooleanParameter("Filter Ladder", "fb", false);
 	
 	

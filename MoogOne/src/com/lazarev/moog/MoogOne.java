@@ -47,10 +47,17 @@ public class MoogOne {
 		{
 			String newFile = outFile + "A RANDOM PRESET " + i + ".m1p";
 
-			PresetRandomizer.randomizeAllOscillators(preset);
+			PresetRandomizer.randomizeParameters(preset);
+			
+			boolean isValid = PresetValidator.isValid(preset);
+			if (!isValid) {
+				System.out.println("!!! ATTENTION : The Preset is invalid. Aborting!");
+				System.exit(1);
+			}
 			
 			PresetIO.writePresetFile(newFile, preset);
  		}
+		
 		
 		
 	}

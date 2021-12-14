@@ -1,5 +1,6 @@
 package com.lazarev.moog;
 
+import com.lazarev.moog.modules.Envelope;
 import com.lazarev.moog.modules.Mixer;
 import com.lazarev.moog.modules.Oscillator;
 import com.lazarev.moog.modules.Pulse;
@@ -10,28 +11,27 @@ public class PresetRandomizer
 {
 
 	/* MAIN RANDOMIZATION IS HERE */
-	public static void randomizeAllOscillators(Preset preset)
+	public static void randomizeParameters(Preset preset)
 	{
+		System.out.println("Randomizing All Parameters.");
 
 		// Synths 1 through 3
 		for (int synth = 1; synth < 4; synth++)
 		{
-
-			if (MoogOne.isDebug) System.out.println("--- OSCILLATORS ---");
-			
+			if (MoogOne.isDebug) System.out.println("----- OSCILLATORS -----");
 			for (int oscillator = 1; oscillator < 4; oscillator++)
 			{
 				if (MoogOne.isDebug) System.out.println("Randomizing Oscillators. Synth=[" + synth + "] Oscillator=[" + oscillator + "]" );
 				
+				randomizeOctave(preset, synth, oscillator);
 				randomizeWaveType(preset, synth, oscillator);
 				randomizeWaveAngle(preset, synth, oscillator);
-				randomizeOctave(preset, synth, oscillator);
 				randomizePulseWidth(preset, synth, oscillator);
 				randomizePulseBalance(preset, synth, oscillator);
 			}
 			
-			if (MoogOne.isDebug) System.out.println("--- MIX SOURCES ---");
 
+			if (MoogOne.isDebug) System.out.println("----- MIX SOURCES -----");
 			for (int i = 0; i < Mixer.SOURCES.length; i++)
 			{
 				String source = Mixer.SOURCES[i];
@@ -40,11 +40,36 @@ public class PresetRandomizer
 				randomizeGain(preset, synth, source);
 				randomizeFilterRouting(preset, synth, source);	
 			}
+			
+
+			if (MoogOne.isDebug) System.out.println("----- ENVELOPES -----");
+			for (int env = 1; env < 4; env++)
+			{
+				if (MoogOne.isDebug) System.out.println("Randomizing Envelopes. Synth=[" + synth + "] Envelope=[" + env + "]" );
+				
+				randomizeAttack(preset, synth, env);
+				randomizeDecay(preset, synth, env);
+				randomizeSustain(preset, synth, env);
+				randomizeRelease(preset, synth, env);
+				
+				
+				// Disable randomize envelope buttons for now as they create very drastic changes
+				// randomizeEnvelopeButtons(preset, synth, env);
+			}
+			
 		}
 		
 		if (MoogOne.isDebug) System.out.println("--- RANDOMIZATION COMPLETE ---");
 	}
 	
+	
+	/* ---- OSCILLATOR ---- */
+	
+	public static void randomizeOctave(Preset preset, int synth, int oscillator)
+	{
+		Parameter octave = Oscillator.getOctave(synth, oscillator);
+		setRandomValue(preset, octave);
+	}
 	
 	public static void randomizeWaveType(Preset preset, int synth, int oscillator)
 	{
@@ -58,12 +83,6 @@ public class PresetRandomizer
 		setRandomValue(preset, waveAngle);
 	}
 
-	public static void randomizeOctave(Preset preset, int synth, int oscillator)
-	{
-		Parameter octave = Oscillator.getOctave(synth, oscillator);
-		setRandomValue(preset, octave);
-	}
-	
 	public static void randomizePulseWidth(Preset preset, int synth, int oscillator)
 	{
 		Parameter octave = Pulse.getPulseWidth(synth, oscillator);
@@ -74,8 +93,12 @@ public class PresetRandomizer
 	{
 		String source = Mixer.SOURCES[ oscillator - 1 ];
 		Parameter octave = Mixer.getPulseBalance(synth, source);
+			
 		setRandomValue(preset, octave);
 	}
+	
+	
+	/* ---- MIXER ---- */
 	
 	public static void randomizeFilterRouting(Preset preset, int synth, String source) 
 	{
@@ -96,7 +119,6 @@ public class PresetRandomizer
 	}
 	
 	
-	
 	public static void randomizeGain(Preset preset, int synth, String source)
 	{
 		Parameter gain = Mixer.getGain(synth, source);
@@ -113,6 +135,53 @@ public class PresetRandomizer
 	}
 	
 	
+	/* ---- ENVELOPE ---- */
+	
+	public static void randomizeAttack(Preset preset, int synth, int env)
+	{
+		Parameter attack = Envelope.getAttack(synth, env);		
+		setRandomValue(preset, attack);
+	}
+	
+	public static void randomizeDecay(Preset preset, int synth, int env)
+	{
+		Parameter decay = Envelope.getDecay(synth, env);		
+		setRandomValue(preset, decay);
+	}
+	
+	public static void randomizeSustain(Preset preset, int synth, int env)
+	{
+		Parameter sustain = Envelope.getSustain(synth, env);		
+		setRandomValue(preset, sustain);
+	}
+	
+	public static void randomizeRelease(Preset preset, int synth, int env)
+	{
+		Parameter release = Envelope.getRelease(synth, env);		
+		setRandomValue(preset, release);
+	}
+	
+	
+	/* Randomize four buttons at once */
+	public static void randomizeEnvelopeButtons(Preset preset, int synth, int env)
+	{
+		Parameter param = Envelope.getMultiTrig(synth, env);
+		setRandomValue(preset, param);	
+		
+		param = Envelope.getSync(synth, env);
+		setRandomValue(preset, param);	
+		
+		param = Envelope.getLoop(synth, env);
+		setRandomValue(preset, param);	
+		
+		param = Envelope.getLatch(synth, env);
+		setRandomValue(preset, param);	
+	}
+	
+	
+	
+	/* ---- STATIC RANDOMIZATION AND UTILITIES ---- */
+	
 	private static void setRandomValue(Preset preset, Parameter parameter) 
 	{
 		String key = parameter.getKey();
@@ -128,7 +197,8 @@ public class PresetRandomizer
 	{
 		String key = parameter.getKey();
 		String oldValueString = preset.getValue(key);
-		
+	
+		// Operating on Strings because that's how the final Values are stored.
 		double oldValue = Double.parseDouble(oldValueString);
 		double newValue = oldValue * multiplier;
 		
@@ -136,6 +206,9 @@ public class PresetRandomizer
 		
 		printDebug(preset, parameter, oldValueString, success);
 	}
+	
+	
+	
 	
 	
 	

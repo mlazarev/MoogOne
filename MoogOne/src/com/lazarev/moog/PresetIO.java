@@ -64,6 +64,8 @@ class PresetIO {
 	
 	public static void writePresetFile(String path, Preset preset) {
 		
+		System.out.println("Writing Preset to file.");
+		
 		File presetFile = new File(path);
 		
 		if (presetFile.exists()) {

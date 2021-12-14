@@ -17,13 +17,15 @@ abstract class RootModule
 	
 	/** --- Some validation utilities --- */
 
-	public static boolean isValidSynth(int synthNumber)
-	{
+	public static boolean isValidSynth(int synthNumber) {
 		return (synthNumber >= 1 && synthNumber <= 3);
 	}
 
-	public static boolean isValidOsc(int oscNumber)
-	{
+	public static boolean isValidOsc(int oscNumber)	{
 		return (oscNumber >= 1 && oscNumber <= 3);
+	}
+	
+	public static boolean isValidEnv(int envNumber) {
+		return (envNumber >=1 && envNumber <= 3);
 	}
 }
